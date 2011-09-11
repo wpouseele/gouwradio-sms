@@ -1,2 +1,18 @@
-Netbeans and GitHub
+=============
+GOUWRADIO-SMS
+=============
+
+DESCRIPTION
+===========
+Mobile frontend for the gouwradio SMS system.
+
+TECHNOLOGY USED
+===============
+The SMS messages received via FrontlineSMS are logged into a local Mysql database.
+Using the Zend Framework and Doctrine, these messages are displayed on a website.
+To support mobile clients, we use the jQuery Mobile framework.
+
+DOCU
+====
+* Netbeans and GitHub
 http://www.dreamincode.net/forums/blog/1662/entry-3465-day-47-how-to-use-githubcom-with-netbeans-70/

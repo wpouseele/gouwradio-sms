@@ -14,18 +14,6 @@ class Default_IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $messages = $this->_em->getRepository('Entities\Message')->getNewMessages();
-        
-        Doctrine\Common\Util\Debug::dump($messages);
-        
-        if($messages)
-        {
-            $this->view->messages = $messages;
-        }
-        else 
-        {
-            $this->view->nonewmessages = true;
-        }
         
         
     }
