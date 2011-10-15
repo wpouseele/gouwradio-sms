@@ -3,3 +3,5 @@ nbproject/
 library/Zend
 library/Doctrine
 library/Symfony
+nbproject
+.project
