@@ -22,7 +22,6 @@ class Default_AllesController extends Zend_Controller_Action
         // disable the layout
         $this->_helper->layout->disableLayout();
         $messages = $this->_em->getRepository('Entities\Message')->getNewMessages();
-		
         $this->view->data = Zend_Json::encode($this->convertArrayKeys($messages));
     }
 	

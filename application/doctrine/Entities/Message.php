@@ -15,7 +15,7 @@ class Message
     private $date;
 
     /**
-     * @var text $number
+     * @var string $number
      */
     private $number;
 
@@ -25,17 +25,22 @@ class Message
     private $text;
 
     /**
-     * @var  $deleted
+     * @var string $subject
+     */
+    private $subject;
+
+    /**
+     * @var integer $deleted
      */
     private $deleted;
 
     /**
-     * @var  $type
+     * @var string $type
      */
     private $type;
 
     /**
-     * @var  $new
+     * @var integer $new
      */
     private $new;
 
@@ -68,7 +73,7 @@ class Message
     /**
      * Set number
      *
-     * @param text $number
+     * @param string $number
      */
     public function setNumber($number)
     {
@@ -78,7 +83,7 @@ class Message
     /**
      * Get number
      *
-     * @return text 
+     * @return string 
      */
     public function getNumber()
     {
@@ -106,9 +111,29 @@ class Message
     }
 
     /**
+     * Set subject
+     *
+     * @param string $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
+     * Get subject
+     *
+     * @return string 
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
      * Set deleted
      *
-     * @param $deleted
+     * @param integer $deleted
      */
     public function setDeleted($deleted)
     {
@@ -118,7 +143,7 @@ class Message
     /**
      * Get deleted
      *
-     * @return 
+     * @return integer 
      */
     public function getDeleted()
     {
@@ -128,7 +153,7 @@ class Message
     /**
      * Set type
      *
-     * @param $type
+     * @param string $type
      */
     public function setType($type)
     {
@@ -138,7 +163,7 @@ class Message
     /**
      * Get type
      *
-     * @return 
+     * @return string 
      */
     public function getType()
     {
@@ -148,7 +173,7 @@ class Message
     /**
      * Set new
      *
-     * @param $new
+     * @param integer $new
      */
     public function setNew($new)
     {
@@ -158,7 +183,7 @@ class Message
     /**
      * Get new
      *
-     * @return 
+     * @return integer 
      */
     public function getNew()
     {

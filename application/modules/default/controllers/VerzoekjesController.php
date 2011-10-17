@@ -19,8 +19,15 @@ class Default_VerzoekjesController extends Zend_Controller_Action
     
     public function addAction()
     {
-        echo $this->getRequest()->getParam('id');
-        
+    	$id = $this->getRequest()->getParam('id');
+        $verzoekje = $this->_em->find('Entities\Message',$id);
+		
+		//Doctrine\Common\Util\Debug::dump($verzoekje);
+		
+		$verzoekje->setType('verzoek');
+		$verzoekje->setNew(0);
+		$this->_em->persist($verzoekje);
+		$this->_em->flush();		
         
         // return to the overview list
         //$this->_forward('index', 'index');

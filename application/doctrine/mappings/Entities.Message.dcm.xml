@@ -2,13 +2,15 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="Entities\Message" table="message" repository-class="Entities\MessageRepository">
     <id name="id" type="bigint" column="id">
-      <generator strategy="AUTO"/>
+      <generator strategy="IDENTITY"/>
     </id>
     <field name="date" type="bigint" column="date"/>
-    <field name="number" type="text" column="senderMsisdn" nullable="true" />
-    <field name="text" type="text" column="textContent" nullable="true" />
-    <field name="deleted" text="integer" column="gouwradioDeleted" />
-    <field name="type" text="integer" column="gouwradioType" nullable="true" />
-    <field name="new" text="integer" column="gouwradioNew" />
+    <field name="number" type="string" column="senderMsisdn" length="255"/>
+    <field name="text" type="text" column="textContent"/>
+    <field name="subject" type="string" column="subject" length="255"/>
+    <field name="deleted" type="integer" column="gouwradioDeleted"/>
+    <field name="type" type="string" column="gouwradioType" length="25"/>
+    <field name="new" type="integer" column="gouwradioNew"/>
+    <lifecycle-callbacks/>
   </entity>
 </doctrine-mapping>
