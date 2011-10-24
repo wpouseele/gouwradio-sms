@@ -11,6 +11,7 @@
     <field name="deleted" type="integer" column="gouwradioDeleted"/>
     <field name="type" type="string" column="gouwradioType" length="25"/>
     <field name="new" type="integer" column="gouwradioNew"/>
+    <field name="read" type="integer" column="gouwradioRead" />
     <lifecycle-callbacks/>
   </entity>
 </doctrine-mapping>

@@ -45,6 +45,11 @@ class Message
     private $new;
 
     /**
+     * @var integer $read
+     */
+    private $read;
+
+    /**
      * @var bigint $id
      */
     private $id;
@@ -188,6 +193,26 @@ class Message
     public function getNew()
     {
         return $this->new;
+    }
+
+    /**
+     * Set read
+     *
+     * @param integer $read
+     */
+    public function setRead($read)
+    {
+        $this->read = $read;
+    }
+
+    /**
+     * Get read
+     *
+     * @return integer 
+     */
+    public function getRead()
+    {
+        return $this->read;
     }
 
     /**

@@ -1,85 +1,19 @@
-<script type="text/javascript">
-    $(function() {
-        
-        $.getJSON("/alles/new/",function(json){
-            $.each(json, function(key,message){
-                // multiplied by 1000 so that the argument is in milliseconds, not seconds
-                var date = new Date((message.date / 1000) * 1000);
-                var day = pad2(date.getDate());
-                var month = pad2(date.getMonth()+1);    // there is an difference of one month ...
-                var year = date.getFullYear();
-                var hour = pad2(date.getHours());
-                var min = pad2(date.getMinutes());
-                var sec = pad2(date.getSeconds());
-                var formattedDate = day + "/" + month + "/" + year + " " + hour + ":" + min + ":" + sec;
-                
-                if(key==0) {
-                    $("#newMessages").append(
-                        '<li class="ui-li ui-li-static ui-body-c ui-corner-top">' +
-                            '<div class="nieuw-hour">' + formattedDate + '</div>' +
-                            '<div class="nieuw-phoneNumber">' + message.number + '</div>' +
-                            '<div class="nieuw-text">' + message.text + '</div>' +
-                            '<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">' +
-                                '<a href="/verzoekjes/add/id/' + message.id + '/" data-theme="c" class="ajax ui-btn ui-corner-left ui-btn-up-c" data-role="button"><span class="ui-btn-inner ui-corner-left"><span class="ui-btn-text">Verzoek</span></span></a>' +
-                                '<a href="/berichtjes/add/id/' + message.id + '/" data-theme="c" class="ajax ui-btn ui-btn-up-c" data-role="button"><span class="ui-btn-inner"><span class="ui-btn-text">Bericht</span></span></a>' +
-                                '<a href="/alles/remove/id/' + message.id + '/" data-theme="c" class="ajax ui-btn ui-corner-right ui-controlgroup-last ui-btn-up-c" data-role="button"><span class="ui-btn-inner ui-corner-right ui-controlgroup-last"><span class="ui-btn-text">Verwijder</span></span></a>' +
-                            '</div>' +
-                        '</li>'
-                    );
-                }
-                else if(key==json.length-1) {
-                    $("#newMessages").append(
-                        '<li class="ui-li ui-li-static ui-body-c ui-corner-bottom">' +
-                            '<div class="nieuw-hour">' + formattedDate + '</div>' +
-                            '<div class="nieuw-phoneNumber">' + message.number + '</div>' +
-                            '<div class="nieuw-text">' + message.text + '</div>' +
-                            '<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">' +
-                                '<a href="/verzoekjes/add/id/' + message.id + '/" data-theme="c" class="ajax ui-btn ui-corner-left ui-btn-up-c" data-role="button"><span class="ui-btn-inner ui-corner-left"><span class="ui-btn-text">Verzoek</span></span></a>' +
-                                '<a href="/berichtjes/add/id/' + message.id + '/" data-theme="c" class="ajax ui-btn ui-btn-up-c" data-role="button"><span class="ui-btn-inner"><span class="ui-btn-text">Bericht</span></span></a>' +
-                                '<a href="/alles/remove/id/' + message.id + '/" data-theme="c" class="ajax ui-btn ui-corner-right ui-controlgroup-last ui-btn-up-c" data-role="button"><span class="ui-btn-inner ui-corner-right ui-controlgroup-last"><span class="ui-btn-text">Verwijder</span></span></a>' +
-                            '</div>' +
-                        '</li>'
-                    );
-                }
-                else {
-                    $("#newMessages").append(
-                        '<li class="ui-li ui-li-static ui-body-c">' +
-                            '<div class="nieuw-hour">' + formattedDate + '</div>' +
-                            '<div class="nieuw-phoneNumber">' + message.number + '</div>' +
-                            '<div class="nieuw-text">' + message.text + '</div>' +
-                            '<div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">' +
-                                '<a href="/verzoekjes/add/id/' + message.id + '/" data-theme="c" class="ajax ui-btn ui-corner-left ui-btn-up-c" data-role="button"><span class="ui-btn-inner ui-corner-left"><span class="ui-btn-text">Verzoek</span></span></a>' +
-                                '<a href="/berichtjes/add/id/' + message.id + '/" data-theme="c" class="ajax ui-btn ui-btn-up-c" data-role="button"><span class="ui-btn-inner"><span class="ui-btn-text">Bericht</span></span></a>' +
-                                '<a href="/alles/remove/id/' + message.id + '/" data-theme="c" class="ajax ui-btn ui-corner-right ui-controlgroup-last ui-btn-up-c" data-role="button"><span class="ui-btn-inner ui-corner-right ui-controlgroup-last"><span class="ui-btn-text">Verwijder</span></span></a>' +
-                            '</div>' +
-                        '</li>'
-                    );
-                }
-            });
-            
-        });
-        
-        $('.ajax').click(function(event) {
-            // prevent the default hyperlink action
-            event.preventDefault();
-           
-            var href=$(this).attr('href');
-            alert(href);
-           
-            return false;
-        });
-        
-        function pad2(number) {
-            return (number < 10 ? '0' : '') + number
-        }
-    });
-</script>
-
 <h2>Nieuwe SMS'en</h2>
-
-<?php if($this->nonewmessages) { ?>
+<?php if($this->noMessages) { ?>
 Er zijn geen nieuwe SMS'en
 <?php } else { ?>
-<ul id="newMessages" data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+	<?php foreach ($this->messages as $key => $message) { ?>
+		<li class="ui-li ui-li-static ui-body-c ui-corner-top">
+	        <div class="nieuw-hour"><?php echo $this->DateFromEpoch()->epoch($message->getDate()); ?></div>
+	        <div class="nieuw-phoneNumber"><?php echo $message->getNumber(); ?></div>
+	        <div class="nieuw-text"><?php echo $message->getText(); ?></div>
+	        <div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
+	            <a href="/verzoekjes/add/id/<?php echo $message->getId();?>/" data-theme="c" class="ajax ui-btn ui-corner-left ui-btn-up-c" data-role="button"><span class="ui-btn-inner ui-corner-left"><span class="ui-btn-text">Verzoek</span></span></a>
+	            <a href="/berichtjes/add/id/<?php echo $message->getId();?>/" data-theme="c" class="ajax ui-btn ui-btn-up-c" data-role="button"><span class="ui-btn-inner"><span class="ui-btn-text">Bericht</span></span></a>
+	            <a href="/alles/remove/id/<?php echo $message->getId();?>/" data-theme="c" class="ajax ui-btn ui-corner-right ui-controlgroup-last ui-btn-up-c" data-role="button"><span class="ui-btn-inner ui-corner-right ui-controlgroup-last"><span class="ui-btn-text">Verwijder</span></span></a>
+	        </div>
+	    </li>
+    <?php } ?>
 </ul>
 <?php } ?>

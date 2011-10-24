@@ -1,18 +1,21 @@
 <h2>Twitter search on gouwradio</h2>
-<?php // Zend_Debug::dump($this->dummy); ?>
+<?php if($this->noTwitterResult) { ?>
+Geen recente Twitter resultaten.
+<?php } else { ?>
 <ul data-role="listview" data-split-icon="gear" data-split-theme="d" class="ui-listview">
-<?php foreach ($this->twitterSearch['results'] as $result) { ?>
-    <li data-theme="c" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-btn-up-c">
-        <div class="ui-btn-inner ui-li ui-li-has-alt">
-            <div class="ui-btn-text">
-                <a href="index.html" class="ui-link-inherit">
-                    <img src="<?php echo $result['profile_image_url'] ?>" class="ui-li-thumb"/>
-                    <h3 class="ui-li-heading"><?php echo $result['from_user'] ?></h3>
-                    <p class="ui-li-desc"><?php echo $result['text'] ?></p>
-                </a>
-            </div>
-        </div>
-        <a href="lists-split-purchase.html" data-rel="dialog" data-transition="slideup" title="Purchase album " class="ui-li-link-alt ui-btn ui-btn-up-c" data-theme="c">
-    </li>
-<?php } ?>
+	<?php foreach ($this->twitterSearch['results'] as $result) { ?>
+	    <li data-theme="c" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-btn-up-c">
+	        <div class="ui-btn-inner ui-li ui-li-has-alt">
+	            <div class="ui-btn-text">
+	                <a href="index.html" class="ui-link-inherit">
+	                    <img src="<?php echo $result['profile_image_url'] ?>" class="ui-li-thumb"/>
+	                    <h3 class="ui-li-heading"><?php echo $result['from_user'] ?></h3>
+	                    <p class="ui-li-desc"><?php echo $result['text'] ?></p>
+	                </a>
+	            </div>
+	        </div>
+	        <a href="lists-split-purchase.html" data-rel="dialog" data-transition="slideup" title="Purchase album " class="ui-li-link-alt ui-btn ui-btn-up-c" data-theme="c">
+	    </li>
+	<?php } ?>
 </ul>
+<?php } ?>

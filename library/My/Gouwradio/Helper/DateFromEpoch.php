@@ -5,7 +5,7 @@ class My_Gouwradio_Helper_DateFromEpoch extends Zend_View_Helper_Abstract
     
     private $epoch;
     
-    public function datefromEpoch() {
+    public function dateFromEpoch() {
         $this->_defaultValues();
         return $this;
     }
