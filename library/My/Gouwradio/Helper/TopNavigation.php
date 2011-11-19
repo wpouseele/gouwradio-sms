@@ -48,9 +48,9 @@ class My_Gouwradio_Helper_TopNavigation extends Zend_View_Helper_Abstract
         }
         
         $output = '<li><a href="/" ' . $classHome .' data-transition="fade" data-icon="home" data-ajax="false">Home</a></li>'.
-                  '<li><a href="/verzoekjes/" '. $classVerzoekjes .' data-transition="fade" data-icon="my-verzoekje">Verzoekjes</a></li>'.
-                  '<li><a href="/berichtjes/" '. $classBerichtjes .' data-transition="fade" data-icon="my-bericht">Berichtjes</a></li>'.
-                  '<li><a href="/alles/" '. $classAlles .' data-transition="fade" data-icon="my-alles">Volledige lijst</a></li>'.
+                  '<li><a href="/verzoekjes/" '. $classVerzoekjes .' data-transition="fade" data-icon="my-verzoekje" data-ajax="false">Verzoekjes</a></li>'.
+                  '<li><a href="/berichtjes/" '. $classBerichtjes .' data-transition="fade" data-icon="my-bericht" data-ajax="false">Berichtjes</a></li>'.
+                  '<li><a href="/alles/" '. $classAlles .' data-transition="fade" data-icon="my-alles" data-ajax="false">Alles</a></li>'.
                   '<li><a href="/twitter/" '. $classTwitter .' data-transition="fade" data-icon="my-twitter">Twitter</a></li>';
         
         return $output;

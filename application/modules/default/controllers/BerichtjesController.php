@@ -38,5 +38,25 @@ class Default_BerichtjesController extends Zend_Controller_Action
         // return to home
         $this->_redirect('/');
     }
+	
+	public function detailAction()
+	{
+		$id = $this->getRequest()->getParam('id');
+        $berichtje = $this->_em->find('Entities\Message',$id);
+		
+		if($berichtje)
+		{
+			$this->view->berichtje = $berichtje;
+			
+			// set the previous unread message
+			$previousBerichtje = $this->_em->getRepository('Entities\Message')->getPreviousUnread('bericht',$id);
+			if($previousBerichtje) $this->view->previous = end($previousBerichtje)->getId();	// be sure to get the last entry in the array	
+			
+			// get the next unread message
+			$nextBerichtje = $this->_em->getRepository('Entities\Message')->getNextUnread('bericht',$id);
+			if($nextBerichtje) $this->view->next = $nextBerichtje[0]->getId();					// be sure to get the first entry in the array
+			
+		}
+	}
 }
 

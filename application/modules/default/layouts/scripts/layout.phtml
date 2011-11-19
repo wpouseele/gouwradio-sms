@@ -3,29 +3,28 @@
 <head>
     <title>Gouwradio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-    <script src="/js/gouwradio.js"></script>
-    <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
+    <meta http-equiv="Pragma" content="no-cache">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" />
     <link rel="stylesheet" href="/style/gouwradio.css" />
-    <meta http-equiv="Pragma" content="no-cache">
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
 </head>
 <body>
-    <div data-role="page" data-cache="never" data-url="/"> 
-	<div data-role="header">
-            <h1>Gouwradio SMS Systeem</h1>
-            <div data-role="navbar">
-		<ul>
-                    <?php echo $this->topNavigation()->active($this->activeData); ?>
-		</ul>
-            </div>
-        </div> 
-	<div data-role="content">
+    <div data-role="page" data-cache="never">
+		<div data-role="header">
+	        <h1>Gouwradio SMS Systeem</h1>
+	        <div data-role="navbar">
+				<ul>
+		        	<?php echo $this->topNavigation()->active($this->activeData); ?>
+				</ul>
+	        </div><!-- /navbar -->
+	 	</div><!-- /header -->
+		<div data-role="content">
             <?php echo $this->layout()->content; ?>
-        </div> 
-	<div data-role="footer">
-            <h4>0497 21 53 60 | @gouwradio</h4>
-        </div>
+	    </div> 
+		<div data-role="footer">
+	            <h4>0497 21 53 60 | @gouwradio</h4>
+	    </div>
     </div> 
 </body>
 </html>

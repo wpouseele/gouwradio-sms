@@ -1,0 +1,28 @@
+<h1>Detail berichtje</h1>
+<?php if($this->berichtje->getRead() == 0) { ?>
+	<a href="/alles/markread/type/berichtjes/id/<?php echo $this->berichtje->getId();?>/" data-role="button" data-icon="check">Markeer als gelezen</a>
+<?php } else { ?>
+	<a href="/alles/markunread/type/berichtjes/id/<?php echo $this->berichtje->getId();?>/" data-role="button" data-icon="check">Markeer als ongelezen</a>
+<?php } ?>
+<br />
+<div class="ui-grid-b">
+	<div class="ui-block-a"><strong>Nummer: <?php echo $this->berichtje->getNumber(); ?></strong></div>
+	<div class="ui-block-b"><strong>Tijd: <?php echo $this->DateFromEpoch()->epoch($this->berichtje->getDate()); ?></strong></div>
+	<div class="ui-block-b"></div>
+</div><!-- /grid-b -->
+<br />
+<?php echo $this->berichtje->getText(); ?>
+<br /><br />
+
+<fieldset class="ui-grid-a">
+	<div class="ui-block-a">
+	<?php if ($this->previous) { ?>
+		<a href="/berichtjes/detail/id/<?php echo $this->previous;?>/" data-transition="reverse slide" data-role="button" data-icon="arrow-l">Vorige</a>
+	<?php } ?>
+	</div>
+	<div class="ui-block-b">
+	<?php if ($this->next) { ?>
+		<a href="/berichtjes/detail/id/<?php echo $this->next;?>/" data-role="button" data-icon="arrow-r" data-iconpos="right" data-inline="false">Volgende</a>	   
+	<?php } ?>
+	</div>
+</fieldset>

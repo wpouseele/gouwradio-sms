@@ -2,16 +2,16 @@
 <?php if($this->noMessages) { ?>
 Er zijn geen nieuwe SMS'en
 <?php } else { ?>
-<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+<ul data-role="listview" data-inset="true">
 	<?php foreach ($this->messages as $key => $message) { ?>
-		<li class="ui-li ui-li-static ui-body-c ui-corner-top">
+		<li>
 	        <div class="nieuw-hour"><?php echo $this->DateFromEpoch()->epoch($message->getDate()); ?></div>
 	        <div class="nieuw-phoneNumber"><?php echo $message->getNumber(); ?></div>
 	        <div class="nieuw-text"><?php echo $message->getText(); ?></div>
-	        <div data-role="controlgroup" data-type="horizontal" class="ui-corner-all ui-controlgroup ui-controlgroup-horizontal">
-	            <a href="/verzoekjes/add/id/<?php echo $message->getId();?>/" data-theme="c" class="ajax ui-btn ui-corner-left ui-btn-up-c" data-role="button"><span class="ui-btn-inner ui-corner-left"><span class="ui-btn-text">Verzoek</span></span></a>
-	            <a href="/berichtjes/add/id/<?php echo $message->getId();?>/" data-theme="c" class="ajax ui-btn ui-btn-up-c" data-role="button"><span class="ui-btn-inner"><span class="ui-btn-text">Bericht</span></span></a>
-	            <a href="/alles/remove/id/<?php echo $message->getId();?>/" data-theme="c" class="ajax ui-btn ui-corner-right ui-controlgroup-last ui-btn-up-c" data-role="button"><span class="ui-btn-inner ui-corner-right ui-controlgroup-last"><span class="ui-btn-text">Verwijder</span></span></a>
+	        <div data-role="controlgroup" data-type="horizontal">
+	            <a href="/verzoekjes/add/id/<?php echo $message->getId();?>/" data-theme="c" data-role="button">Verzoek</a>
+	            <a href="/berichtjes/add/id/<?php echo $message->getId();?>/" data-theme="c" data-role="button">Bericht</a>
+	            <a href="/alles/remove/id/<?php echo $message->getId();?>/" data-theme="c" data-role="button">Verwijder</a>
 	        </div>
 	    </li>
     <?php } ?>

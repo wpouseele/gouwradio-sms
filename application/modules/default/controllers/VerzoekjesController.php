@@ -41,9 +41,22 @@ class Default_VerzoekjesController extends Zend_Controller_Action
 	
 	public function detailAction()
 	{
+		$id = $this->getRequest()->getParam('id');
+        $verzoekje = $this->_em->find('Entities\Message',$id);
 		
+		if($verzoekje)
+		{
+			$this->view->verzoekje = $verzoekje;
+			
+			// set the previous unread message
+			$previousVerzoekje = $this->_em->getRepository('Entities\Message')->getPreviousUnread('verzoek',$id);
+			if($previousVerzoekje) $this->view->previous = end($previousVerzoekje)->getId();	// be sure to get the last entry in the array	
+			
+			// get the next unread message
+			$nextVerzoekje = $this->_em->getRepository('Entities\Message')->getNextUnread('verzoek',$id);
+			if($nextVerzoekje) $this->view->next = $nextVerzoekje[0]->getId();					// be sure to get the first entry in the array
+			
+		}
 	}
-
-
 }
 

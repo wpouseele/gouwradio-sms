@@ -1,0 +1,28 @@
+<h1>Detail SMS</h1>
+<?php if($this->message->getRead() == 0) { ?>
+	<a href="/alles/markread/type/alles/id/<?php echo $this->message->getId();?>/" data-role="button" data-icon="check">Markeer als gelezen</a>
+<?php } else { ?>
+	<a href="/alles/markunread/type/alles/id/<?php echo $this->message->getId();?>/" data-role="button" data-icon="check">Markeer als ongelezen</a>
+<?php } ?>
+<br />
+<div class="ui-grid-b">
+	<div class="ui-block-a"><strong>Nummer: <?php echo $this->message->getNumber(); ?></strong></div>
+	<div class="ui-block-b"><strong>Tijd: <?php echo $this->DateFromEpoch()->epoch($this->message->getDate()); ?></strong></div>
+	<div class="ui-block-b"><strong>Type: <?php echo $this->message->getType(); ?></div>
+</div><!-- /grid-b -->
+<br />
+<?php echo $this->message->getText(); ?>
+<br /><br />
+
+<fieldset class="ui-grid-a">
+	<div class="ui-block-a">
+	<?php if ($this->previous) { ?>
+		<a href="/alles/detail/id/<?php echo $this->previous;?>/" data-transition="reverse slide" data-role="button" data-icon="arrow-l">Vorige</a>
+	<?php } ?>
+	</div>
+	<div class="ui-block-b">
+	<?php if ($this->next) { ?>
+		<a href="/alles/detail/id/<?php echo $this->next;?>/" data-role="button" data-icon="arrow-r" data-iconpos="right" data-inline="false">Volgende</a>	   
+	<?php } ?>
+	</div>
+</fieldset>

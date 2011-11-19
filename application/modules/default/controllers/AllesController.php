@@ -14,8 +14,88 @@ class Default_AllesController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $messages = $this->_em->getRepository('Entities\Message')->getMessages();
+		if ($messages)
+		{
+			$this->view->messages = $messages;
+		}
+		else 
+		{
+			$this->view->noMessages = TRUE;			
+		}
     }
+	
+	public function removeAction()
+	{
+		$id = $this->getRequest()->getParam('id');
+		$message = $this->_em->find('Entities\Message',$id);
+		
+		if ($message)
+		{
+			$message->setDeleted(1);
+			$this->_em->persist($message);
+			$this->_em->flush();
+			
+			// return to home
+			$this->_redirect('/');
+		}
+	}
+	
+	public function markreadAction()
+	{
+		
+		$id = $this->getRequest()->getParam('id');
+		$type = $this->getRequest()->getParam('type');
+        $message = $this->_em->find('Entities\Message',$id);
+		
+		if ($message)
+		{
+			$message->setRead(1);
+			$this->_em->persist($message);
+			$this->_em->flush();		
+	        
+	        // return to original
+	        $this->_redirect('/'.$type.'/detail/id/'.$id.'/');
+		}
+	}
+	
+	public function markunreadAction()
+	{
+		
+		$id = $this->getRequest()->getParam('id');
+		$type = $this->getRequest()->getParam('type');
+        $message = $this->_em->find('Entities\Message',$id);
+		
+		if ($message)
+		{
+			$message->setRead(0);
+			$this->_em->persist($message);
+			$this->_em->flush();		
+	        
+	        // return to original
+	        $this->_redirect('/'.$type.'/detail/id/'.$id.'/');
+		}
+	}
+	
+	public function detailAction()
+	{
+		$id = $this->getRequest()->getParam('id');
+        $message = $this->_em->find('Entities\Message',$id);
+		
+		if($message)
+		{
+			$this->view->message = $message;
+			
+			// set the previous unread message
+			$previousMessage = $this->_em->getRepository('Entities\Message')->getPreviousUnread('alles',$id);
+			if($previousMessage) $this->view->previous = end($previousMessage)->getId();	// be sure to get the last entry in the array	
+			
+			// get the next unread message
+			$nextMessage = $this->_em->getRepository('Entities\Message')->getNextUnread('alles',$id);
+			if($nextMessage) $this->view->next = $nextMessage[0]->getId();					// be sure to get the first entry in the array
+			
+		}
+	}
 
 }
 

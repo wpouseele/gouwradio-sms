@@ -2,19 +2,15 @@
 <?php if($this->noVerzoekjes) { ?>
 Er zijn geen ongelezen verzoekjes
 <?php } else { ?>
-<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+
+<ul data-role="listview" data-filter="true" data-inset="true">
 	<?php foreach ($this->verzoekjes as $key => $verzoekje) { ?>
-		<li class="ui-li ui-li-static ui-body-c ui-corner-top">
-			<div class="ui-btn-inner ui-li">
-				<div class="ui-btn-text">
-					<a href="/verzoekjes/detail/<?php echo $verzoekje->getId();?>/" class="ui-link-inherit"><?php 
-						echo $this->DateFromEpoch()->epoch($verzoekje->getDate());
-						echo ' '; 
-						echo $verzoekje->getText(); 
-					?></a>
-				</div>
-				<span class="ui-icon ui-icon-arrow-r ui-icon-shadow"/>
-			</div>
+		<li>
+			<a href="/verzoekjes/detail/id/<?php echo $verzoekje->getId();?>/">
+				<?php echo $this->DateFromEpoch()->epoch($verzoekje->getDate()); ?>
+				&nbsp;&nbsp;&nbsp;
+				<?php echo $verzoekje->getText(); ?>
+			</a>
 		</li>
 	<?php } ?>
 </ul>

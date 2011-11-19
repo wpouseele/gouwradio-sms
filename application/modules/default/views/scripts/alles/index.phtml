@@ -1,0 +1,17 @@
+<h2>Alle SMS'en</h2>
+<?php if($this->noMessages) { ?>
+Er zijn geen SMS'en
+<?php } else { ?>
+
+<ul data-role="listview" data-filter="true" data-inset="true">
+	<?php foreach ($this->messages as $key => $message) { ?>
+		<li>
+			<a href="/alles/detail/id/<?php echo $message->getId();?>/"> 
+				<?php echo $this->DateFromEpoch()->epoch($message->getDate()); ?>
+				&nbsp;&nbsp;&nbsp;
+				<?php echo $message->getText(); ?>
+			</a>
+		</li>
+	<?php } ?>
+</ul>
+<?php } ?>

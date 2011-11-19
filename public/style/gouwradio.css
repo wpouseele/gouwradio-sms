@@ -8,27 +8,23 @@
  /* TopNavigation icons */
  .ui-icon-my-twitter {
      background:#fff;
-     /*background:rgba(255,255,255,.3);*/
      background-repeat:no-repeat;
      background-image:url('/images/twitter.png');
  }
  
  .ui-icon-my-verzoekje {
-     background:#fff;
      background:rgba(255,255,255,.3);
      background-repeat:no-repeat;
      background-image:url('/images/verzoekje.png');
  }
  
  .ui-icon-my-bericht {
-     background:#fff;
      background:rgba(255,255,255,.3);
      background-repeat:no-repeat;
      background-image:url('/images/bericht.png');
  }
  
  .ui-icon-my-alles {
-     background:#fff;
      background:rgba(255,255,255,.3);
      background-repeat:no-repeat;
      background-image:url('/images/alles.png');
@@ -48,15 +44,7 @@
      padding: 10px 0 0 0;
  }
  
- .ui-controlgroup {
+/* Align the buttons on the home page right */
+.ui-controlgroup {
      text-align: right;
- }
- 
- /* Stop some key items from being truncated */
- body .ui-li .ui-li-desc {
-    white-space: normal;
- }
- 
- body .ui-footer .ui-title {
-    white-space: normal;
  }
