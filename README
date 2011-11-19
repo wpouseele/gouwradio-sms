@@ -12,7 +12,19 @@ The SMS messages received via FrontlineSMS are logged into a local Mysql databas
 Using the Zend Framework and Doctrine, these messages are displayed on a website.
 To support mobile clients, we use the jQuery Mobile framework.
 
-DOCU
-====
-* Netbeans and GitHub
-http://www.dreamincode.net/forums/blog/1662/entry-3465-day-47-how-to-use-githubcom-with-netbeans-70/
+SETUP
+=====
+1. Within Fronline SMS, change the database configuration to
+		mysql.database.xml
+		with server.name : localhost
+		server.port : 3306
+		database.name : yourdbname
+		username : yourusername
+		password : youwpassword
+   Clicking save will create a new database. Make sure the given user has sufficient rights to create a new database
+2. Add extra columns to the message table
+   Execute this queries:
+   alter table message add column 'gouwradioDeleted' int(2) NOT NULL DEFAULT '0';
+   alter table message add column 'gouwradioType' varchar(25) DEFAULT NULL;
+   alter table message add column 'gouwradioNew' int(2) NOT NULL DEFAULT '1';
+   alter table message add column 'gouwradioRead' int(2) NOT NULL DEFAULT '0';
