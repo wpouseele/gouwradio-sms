@@ -30,29 +30,14 @@ class Message
     private $subject;
 
     /**
-     * @var integer $deleted
-     */
-    private $deleted;
-
-    /**
-     * @var string $type
-     */
-    private $type;
-
-    /**
-     * @var integer $new
-     */
-    private $new;
-
-    /**
-     * @var integer $read
-     */
-    private $read;
-
-    /**
      * @var bigint $id
      */
     private $id;
+
+    /**
+     * @var Entities\Gouwradio
+     */
+    private $gouwradio;
 
 
     /**
@@ -136,86 +121,6 @@ class Message
     }
 
     /**
-     * Set deleted
-     *
-     * @param integer $deleted
-     */
-    public function setDeleted($deleted)
-    {
-        $this->deleted = $deleted;
-    }
-
-    /**
-     * Get deleted
-     *
-     * @return integer 
-     */
-    public function getDeleted()
-    {
-        return $this->deleted;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string 
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set new
-     *
-     * @param integer $new
-     */
-    public function setNew($new)
-    {
-        $this->new = $new;
-    }
-
-    /**
-     * Get new
-     *
-     * @return integer 
-     */
-    public function getNew()
-    {
-        return $this->new;
-    }
-
-    /**
-     * Set read
-     *
-     * @param integer $read
-     */
-    public function setRead($read)
-    {
-        $this->read = $read;
-    }
-
-    /**
-     * Get read
-     *
-     * @return integer 
-     */
-    public function getRead()
-    {
-        return $this->read;
-    }
-
-    /**
      * Get id
      *
      * @return bigint 
@@ -223,5 +128,25 @@ class Message
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set gouwradio
+     *
+     * @param Entities\Gouwradio $gouwradio
+     */
+    public function setGouwradio(\Entities\Gouwradio $gouwradio)
+    {
+        $this->gouwradio = $gouwradio;
+    }
+
+    /**
+     * Get gouwradio
+     *
+     * @return Entities\Gouwradio 
+     */
+    public function getGouwradio()
+    {
+        return $this->gouwradio;
     }
 }

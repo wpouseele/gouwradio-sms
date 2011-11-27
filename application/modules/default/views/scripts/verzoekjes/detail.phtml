@@ -1,5 +1,5 @@
 <h1>Detail verzoekje</h1>
-<?php if($this->verzoekje->getRead() == 0) { ?>
+<?php if($this->verzoekje->getGouwradio()->getRead() == 0) { ?>
 	<a href="/alles/markread/type/verzoekjes/id/<?php echo $this->verzoekje->getId();?>/" data-role="button" data-icon="check">Markeer als gelezen</a>
 <?php } else { ?>
 	<a href="/alles/markunread/type/verzoekjes/id/<?php echo $this->verzoekje->getId();?>/" data-role="button" data-icon="check">Markeer als ongelezen</a>

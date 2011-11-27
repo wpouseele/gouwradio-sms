@@ -8,10 +8,13 @@
     <field name="number" type="string" column="senderMsisdn" length="255"/>
     <field name="text" type="text" column="textContent"/>
     <field name="subject" type="string" column="subject" length="255"/>
-    <field name="deleted" type="integer" column="gouwradioDeleted"/>
-    <field name="type" type="string" column="gouwradioType" length="25"/>
-    <field name="new" type="integer" column="gouwradioNew"/>
-    <field name="read" type="integer" column="gouwradioRead" />
+    
+    <one-to-one field="gouwradio" target-entity="Gouwradio" inversed-by="message" >
+      <cascade>
+        <cascade-all/>
+      </cascade>
+    </one-to-one>
+    
     <lifecycle-callbacks/>
   </entity>
 </doctrine-mapping>

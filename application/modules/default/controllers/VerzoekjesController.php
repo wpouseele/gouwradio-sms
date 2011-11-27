@@ -28,12 +28,19 @@ class Default_VerzoekjesController extends Zend_Controller_Action
     public function addAction()
     {
     	$id = $this->getRequest()->getParam('id');
-        $verzoekje = $this->_em->find('Entities\Message',$id);
-		
+        $message = $this->_em->find('Entities\Message',$id);
+        
+        $verzoekje = new Entities\Gouwradio();
 		$verzoekje->setType('verzoek');
 		$verzoekje->setNew(0);
+		$verzoekje->setDeleted(0);
+		$verzoekje->setRead(0);
+		$verzoekje->setMessage($message);	
+		$message->setGouwradio($verzoekje);
+		
 		$this->_em->persist($verzoekje);
-		$this->_em->flush();		
+		$this->_em->persist($message);
+		$this->_em->flush();	
         
         // return to home
         $this->_redirect('/');

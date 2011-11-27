@@ -32,10 +32,19 @@ class Default_AllesController extends Zend_Controller_Action
 		
 		if ($message)
 		{
-			$message->setDeleted(1);
+			// we don't have a gouwradio entity yet so create one first
+			$message2 = new Entities\Gouwradio();
+			$message2->setType('undefined');
+			$message2->setNew(0);
+			$message2->setDeleted(1);
+			$message2->setRead(1);
+			$message2->setMessage($message);
+			$message->setGouwradio($message2);
+			
+			$this->_em->persist($message2);
 			$this->_em->persist($message);
 			$this->_em->flush();
-			
+        	
 			// return to home
 			$this->_redirect('/');
 		}
@@ -46,7 +55,7 @@ class Default_AllesController extends Zend_Controller_Action
 		
 		$id = $this->getRequest()->getParam('id');
 		$type = $this->getRequest()->getParam('type');
-        $message = $this->_em->find('Entities\Message',$id);
+        $message = $this->_em->find('Entities\Message',$id)->getGouwradio();
 		
 		if ($message)
 		{
@@ -64,7 +73,7 @@ class Default_AllesController extends Zend_Controller_Action
 		
 		$id = $this->getRequest()->getParam('id');
 		$type = $this->getRequest()->getParam('type');
-        $message = $this->_em->find('Entities\Message',$id);
+        $message = $this->_em->find('Entities\Message',$id)->getGouwradio();
 		
 		if ($message)
 		{

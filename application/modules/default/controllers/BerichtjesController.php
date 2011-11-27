@@ -28,12 +28,19 @@ class Default_BerichtjesController extends Zend_Controller_Action
 	public function addAction()
     {
     	$id = $this->getRequest()->getParam('id');
-        $berichtje = $this->_em->find('Entities\Message',$id);
+        $message = $this->_em->find('Entities\Message',$id);
 		
+		$berichtje = new Entities\Gouwradio();
 		$berichtje->setType('bericht');
 		$berichtje->setNew(0);
+		$berichtje->setDeleted(0);
+		$berichtje->setRead(0);
+		$berichtje->setMessage($message);
+		$message->setGouwradio($berichtje);
+		
 		$this->_em->persist($berichtje);
-		$this->_em->flush();		
+		$this->_em->persist($message);
+		$this->_em->flush();
         
         // return to home
         $this->_redirect('/');

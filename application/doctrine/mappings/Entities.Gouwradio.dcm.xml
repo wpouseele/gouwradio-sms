@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Entities\Gouwradio" table="gouwradio" >
+    <id name="id" type="bigint" column="id" >
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="deleted" type="integer" column="grdeleted"/>
+    <field name="type" type="string" column="grtype" length="25"/>
+    <field name="new" type="integer" column="grnew"/>
+    <field name="read" type="integer" column="grread" />
+    
+    <one-to-one field="message" target-entity="Message" mapped-by="gouwradio" >
+      <cascade>
+      	<cascade-all/>
+      </cascade>
+    </one-to-one>
+    
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>
